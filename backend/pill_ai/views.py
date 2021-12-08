@@ -54,13 +54,6 @@ class DnnImageView(APIView):
         if file_ser.is_valid():
             file_ser.save()
             data = file_ser.data
-            # data['pill_counts'] = {
-            #     'yellow_ovl': 1, 
-            #     'yellow_rect': 0, 
-            #     'green_cir': 1, 
-            #     'or-ange_sqr': 0, 
-            # }
-            print(data)
             return Response(data, status=status.HTTP_201_CREATED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
