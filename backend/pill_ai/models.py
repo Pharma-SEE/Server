@@ -134,17 +134,33 @@ def draw_label_for_single_image(img, output_dict, status_mesg, score_threshold=0
     ok_box_list = {}
     ng_box_list = {}
 
-    now = datetime.datetime(2021, 12, 7, 7, 0, 0)
+    now = datetime.datetime(1, 1, 1, 18, 0, 0)
     objs_to_save = []
     for pill_class, boxes in box_list.items():
         pill_obj = get_object_or_404(Pill, name=pill_class)
-        qs = Reminder.objects.filter(pill_id=pill_obj.id).filter(is_taken_today=False).filter(Q(when_to_take__gte=now-datetime.timedelta(hours=3)) | Q(when_to_take__lte=now+datetime.timedelta(hours=3)))
+        # qs = Reminder.objects.filter(pill_id=pill_obj.id).filter(is_taken_today=False).filter(Q(when_to_take__gte=(now-datetime.timedelta(hours=3)).time()) | Q(when_to_take__lte=(now+datetime.timedelta(hours=3)).time()))
+        qs = Reminder.objects.filter(pill_id=pill_obj.id).filter(is_taken_today=False)
 
         if len(qs) == 0:
             ng_box_list[pill_class] = boxes
             status_mesg += f"{pill_class} {len(boxes)}정을 빼주세요.\n"
         else:
-            obj = qs[0]
+            obj = None
+            for obj_temp in qs:
+                dummy = datetime.date(1, 1, 1)
+                when_to = datetime.datetime.combine(dummy, obj_temp.when_to_take)
+                diff_hours = abs((now - when_to).total_seconds() / 3600)
+                if diff_hours > 3:
+                    # print(obj_temp, "Not this one.")
+                    continue
+                else:
+                    # print(obj_temp, "this one")
+                    obj = obj_temp
+
+            if not obj:
+                ng_box_list[pill_class] = boxes
+                status_mesg += f"{pill_class} {len(boxes)}정을 빼주세요.\n" 
+
             num_of_pills = len(boxes)
 
             if num_of_pills > int(obj.dose):
