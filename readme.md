@@ -1,16 +1,9 @@
-## [task list]
-reminder API <br> 
-pill API o<br> 
-회원가입 API o<br> 
-JWT 토큰 o<br> 
-보호자 피보호자 연결 API<br>
-
 ## app 단위 개발
-### nugu proxy, 배포(다영)
+### nugu proxy, 백 - 클라이언트 연결(다영)
 + nugu views.py
     + backend proxy 연결 과정(6단계)
         + 누구 디바이스와 유저 연결 인증(todo)
-### API 구현, 인증 허가(도형)
+### API 구현, 배포(도형)
 + [API]
     + accounts 
       + User
@@ -35,14 +28,13 @@ JWT 토큰 o<br>
     + accounts/unfollow : 언팔로우
     + accounts/search : 유저검색
     + pharmasee/api/pills : pill 데이터
-    + pharmasee/api/reminder : reminder 데이터
+    + pharmasee/api/reminders : reminder 데이터
     + pharmasee/search : 약통 검색
 
 
 
 ### 머신러닝 모델, UI (경환)
-배포(미정)<br>
-도커 vs VM<br>
+
 
 [폴더 구조] <br>
 backend - config <br>
