@@ -47,6 +47,3 @@ api test results
 
 ## Deployment with AWS Lightsail
 ----
-
-
-
