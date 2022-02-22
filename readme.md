@@ -1,52 +1,52 @@
-## [task list]
-reminder API <br> 
-pill API o<br> 
-회원가입 API o<br> 
-JWT 토큰 o<br> 
-보호자 피보호자 연결 API<br>
+# Backend Server with Django
+This is the code repository for the backend that serves the React Native clients. We implemented with Pythong Django and developed REST APIs using the django-rest-framework. For a summary of the code and the overall structure, keep reading!
 
-## app 단위 개발
-### nugu proxy, 배포(다영)
-+ nugu views.py
-    + backend proxy 연결 과정(6단계)
-        + 누구 디바이스와 유저 연결 인증(todo)
-### API 구현, 인증 허가(도형)
-+ [API]
-    + accounts 
-      + User
-        + model : abstractuser로 불러오기 -> 보호자, 피보호자
-        + serializer : signup serializer 
-        + url : 
-          + accounts/signup
-          + accounts/follow
-          + accounts/unfollow
-    + pharmasee
-        + model : pill, reminder 
-        + serializer : pillserializer, reminderserializer
-        + url : router 사용 -> api/pills, api/reminders
-        + view : modelviewset 사용 
-+ [검색기능]
-  + user 검색 -> 보호자 
-  + pill 검색 -> 증상(효과)
+## Requirements and Database Schema
+-----
+The requirements for the backend server are... 
+- Store user accounts, pill entries, and intake reminders for each pill.
+- Perform CRUD for pills and reminders through REST API request/responses.
+- Provide response messages containing intake information when requested by NUGU AI speakers.
+- Receive images from clients and perform object dection, sending back result images marked with X and O on each pill.
 
-+ [url 정리](1차)
-    + accounts/signup : 로그인
-    + accounts/follow : 팔로우셋에 저장
-    + accounts/unfollow : 언팔로우
-    + accounts/search : 유저검색
-    + pharmasee/api/pills : pill 데이터
-    + pharmasee/api/reminder : reminder 데이터
-    + pharmasee/search : 약통 검색
+The database schema is not that complicated, comprising of one table for user accounts, and others to store user registered information such as pills, intake reminders and images used for object detection inference.
 
+![db_schema](images/db_schema.png)
 
+## CRUD with REST API
+----
+### User Model
++ accounts 
+    + User
+      + model : abstractuser로 불러오기 -> 보호자, 피보호자
+      + serializer : signup serializer 
+      + url : 
+        + accounts/signup
+        + accounts/follow
+        + accounts/unfollow
+        + accounts/search
 
-### 머신러닝 모델, UI (경환)
-배포(미정)<br>
-도커 vs VM<br>
+### Pill, Reminder Model
++ pharmasee
+    + model : pill, reminder 
+    + serializer : pillserializer, reminderserializer
+    + url : router 사용 -> api/pills, api/reminders, pharmasee/search
+    + view : modelviewset 사용 
 
-[폴더 구조] <br>
-backend - config <br>
-accounts - custom user signup, login, create ...<br>
-pharmasee - pill register, create reminder... <br> 
+## Image Transfer Between Client and Server
+----
+### DnnImage Model
+- API testing results with Postman
+
+## AI Speaker Configuration & Proxy Server
+----
+nugu   
+play builder
+api test results 
+   
+
+## Deployment with AWS Lightsail
+----
+
 
 

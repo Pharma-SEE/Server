@@ -1,7 +1,4 @@
-from rest_framework import response
 from pharmasee.models import Reminder, Pill
-from pharmasee.serializers import PillSerializer
-from accounts.models import User
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -9,7 +6,6 @@ from rest_framework.response import Response
 
 from django.shortcuts import get_object_or_404
 
-import pprint
 import datetime
 
 version = ""
@@ -126,7 +122,7 @@ def answer_not_taken_pills(request):
         return Response(context)
     
     # assume time is 6pm for sake of demo.
-    now = datetime.time(18, 0, 0)
+    now = datetime.time(19, 40, 0)
 
     # qs_overdue = Reminder.objects.filter(when_to_take__lte=datetime.datetime.now().time()).filter(is_taken_today=False).order_by('when_to_take')
     # qs_scheduled = Reminder.objects.filter(when_to_take__gt=datetime.datetime.now().time()).filter(is_taken_today=False).order_by('when_to_take')

@@ -134,7 +134,8 @@ def draw_label_for_single_image(img, output_dict, status_mesg, score_threshold=0
     ok_box_list = {}
     ng_box_list = {}
 
-    now = datetime.datetime(1, 1, 1, 18, 0, 0)
+    # now = datetime.datetime(1, 1, 1, 9, 5, 0)
+    now = datetime.datetime(1, 1, 1, 19, 40, 0)
     objs_to_save = []
     for pill_class, boxes in box_list.items():
         pill_obj = get_object_or_404(Pill, name=pill_class)
@@ -181,7 +182,7 @@ def draw_label_for_single_image(img, output_dict, status_mesg, score_threshold=0
         for obj_to_save in objs_to_save:
             obj_to_save.is_taken_today = True
             obj_to_save.dose_taken_today = int(obj.dose)
-            obj_to_save.taken_time = datetime.datetime.now().time()
+            obj_to_save.taken_time = now.time()
             obj_to_save.save()
         status_mesg += "약을 모두 잘 챙기셨습니다!\n리마인더에 체크해드리겠습니다."
 
