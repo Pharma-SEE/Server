@@ -2,7 +2,7 @@
 This is the code repository for the backend that serves the React Native clients. We implemented with Pythong Django and developed REST APIs using the django-rest-framework. For a summary of the code and the overall structure, keep reading!
 
 ## Requirements and Database Schema
------
+
 The requirements for the backend server are... 
 - Store user accounts, pill entries, and intake reminders for each pill.
 - Perform CRUD for pills and reminders through REST API request/responses.
@@ -14,7 +14,7 @@ The database schema is not that complicated, comprising of one table for user ac
 ![db_schema](images/db_schema.png)
 
 ## CRUD with REST API
-----
+
 ### User Model
 + accounts 
     + User
@@ -34,16 +34,14 @@ The database schema is not that complicated, comprising of one table for user ac
     + view : modelviewset 사용 
 
 ## Image Transfer Between Client and Server
-----
+
 ### DnnImage Model
 - API testing results with Postman
 
 ## AI Speaker Configuration & Proxy Server
-----
 nugu   
 play builder
 api test results 
    
 
 ## Deployment with AWS Lightsail
-----
